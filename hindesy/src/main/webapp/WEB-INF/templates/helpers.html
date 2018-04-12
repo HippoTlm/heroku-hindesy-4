@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{fragments::head}"></head>
+<body>
+
+<div id="wrap" class="">
+    <nav th:replace="~{fragments::navbar}"></nav>
+    <div th:replace="~{fragments::banner}"></div>
+    <div class="container">
+
+
+
+
+        <div class="row">
+            <div class="top-space">
+                <div class="page-header">
+                    <h1>Ils nous ont aidés !</h1>
+                </div>
+
+
+
+
+                <div class=" col-lg-offset-1 col-lg-5 col-offset-1 col-xs-8">
+                    <div class="row">
+
+                        <div th:each="Contributor : ${ContributorsList}" class="col-lg-4   ">
+                            <figure class=" div-partenaire">
+
+<div class="cropImg img-contributor">
+    <img  th:src="'picturecontributor?id='+${Contributor.getId()}"/>
+
+    <div class="img__description">
+        <div th:text="${Contributor.label}"></div>
+    </div>
+</div>
+                                <figcaption th:text="${Contributor.firstName}+' '+  ${Contributor.lastName}"></figcaption>
+                            </figure>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class=" col-lg-offset-1 col-lg-5">
+
+                        <img class="img-responsive" src="img\carrefourimage1.png" />
+
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form">
+                <div class="container">
+                    <form class="form-horizontal" method="post" id="helpers-form">
+                        <fieldset>
+
+                            <!-- Form Name -->
+                            <legend class="formTitle"><h1>Apportez votre pierre à l'édifice !</h1></legend>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="firstName">Prénom</label>
+                                <div class="col-md-4">
+                                    <input id="firstName" maxlength="25"  name="firstName" type="text" placeholder="Entrez votre prénom" class="form-control input-md">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="lastName">Nom</label>
+                                <div class="col-md-4">
+                                    <input id="lastName" maxlength="25" name="lastName" type="text" placeholder="Entrez votre nom" class="form-control input-md">
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Avez-vous des chaussures ?</label>
+                                <div class="col-md-4">
+                                    <input type="radio" name="shoes" value="true" class="form-check-input">Oui<br>
+                                    <input type="radio" name="shoes" value="false" class="form-check-input">Non<br>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Avez-vous un casque ?</label>
+                                <div class="col-md-4">
+                                    <input type="radio" value=true name="helmet" class="form-check-input">Oui<br>
+
+                                    <input type="radio" value=false name="helmet" class="form-check-input">Non<br>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" >Avez-vous des gants ?</label>
+                                <div class="col-md-4">
+                                    <input type="radio" value=true name="gloves" class="form-check-input">Oui<br>
+
+                                    <input type="radio" value=false name="gloves" class="form-check-input">Non<br>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="equipment">Avez-vous d'autres equipements ?</label>
+                                <div class="col-md-4">
+                                    <input id="equipment" maxlength="100"  name="equipment" type="text" placeholder="Décrivez votre équipement" class="form-control input-md">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="size">Quelle est votre pointure ?</label>
+                                <div class="col-md-4">
+                                    <input id="size" maxlength="2"  name="size" type="number" placeholder="Insérez votre pointure" class="form-control input-md">
+
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="email">Email</label>
+                                <div class="col-md-4">
+                                    <input id="email" name="email"  maxlength="50" type="text" placeholder="Entrez votre email" class="form-control input-md">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="phone">Téléphone</label>
+                                <div class="col-md-4">
+                                    <input id="phone" name="phone" type="text" maxlength="10" placeholder="Entrez votre numéro de téléphone" class="form-control input-md">
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="message">En quoi pouvez-vous nous aider ?</label>
+                                <div class="col-md-4">
+                                    <textarea rows="5" class="form-control" col="120" id="message" name="message" maxlength="2000" placeholder="Entrez votre message" form="helpers-form"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success btnform">Valider</button>
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<div th:replace="~{fragments::footer}"></div>
+</body>
+</html>

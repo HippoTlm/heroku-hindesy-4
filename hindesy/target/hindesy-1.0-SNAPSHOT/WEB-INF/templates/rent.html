@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="~{fragments::head}"></head>
+
+<body>
+
+<div id="wrap" class="">
+
+    <nav th:replace="~{fragments::navbar}"></nav>
+
+    <div th:replace="~{fragments::banner}"></div>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="page-header">
+                <h1>Location de la tiny house <3</h1>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <!-- THE COOL FORM HERE -->
+            <div>
+                <div class="form">
+                    <div class="container">
+                        <form class="form-horizontal" method="post" id="rent-form">
+                            <fieldset>
+                                <!-- Form Name -->
+                                <legend class="formTitle"><h1>Réserver la tiny house</h1></legend>
+                                <!-- Input -->
+                                <div class="form-group">
+                                    <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label" for="lastName">
+                                        Nom
+                                    </label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <input id="lastName" maxlength="25" name="lastName" type="text"
+                                               placeholder="Entrez votre nom" class="form-control input-md">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label" for="firstName">
+                                        Prénom
+                                    </label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <input id="firstName" maxlength="25"  name="firstName" type="text"
+                                               placeholder="Entrez votre prénom" class="form-control input-md">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label" for="email">
+                                        Adresse e-mail
+                                    </label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <input id="email" maxlength="50" name="email" type="text"
+                                               placeholder="Entrez votre e-mail" class="form-control input-md">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label" for="dateDebut">
+                                        Date de début
+                                    </label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <input id="dateDebut" name="dateDebut" type="date"
+                                               placeholder="Date du début de la location" class="form-control input-md">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label" for="dateFin">
+                                        Date de fin
+                                    </label>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                        <input id="dateFin" name="dateFin" type="date"
+                                               placeholder="Date de fin de la location" class="form-control input-md">
+                                    </div>
+                                </div>
+                                <button type="submit" class="col-lg-4 col-md-4 col-sm-4 col-xs-4 btn btn-form">
+                                    Valider
+                                </button>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- THE COOL CALENDAR HERE -->
+        <div id="calendar" class="row top-space">
+            <div class="month">
+                <ul>
+                    <li class="prev"><a href="rentprev#calendar">&#10094;</a></li>
+                    <li class="next"><a href="rentnext#calendar">&#10095;</a></li>
+                    <li>
+                        <span th:text="${currentMonthName}"></span>
+                        <br/>
+                        <span style="font-size:18px" th:text="${currentYear}"></span>
+                    </li>
+                </ul>
+            </div>
+
+            <ul class="weekdays">
+                <li>Mo</li>
+                <li>Tu</li>
+                <li>We</li>
+                <li>Th</li>
+                <li>Fr</li>
+                <li>Sa</li>
+                <li>Su</li>
+            </ul>
+
+            <ul class="days">
+                <li><span th:class="${currentDay==1}?'today':''">
+                    <span th:class="${reservedDates.contains(1)==true}?'reserved':''">
+                        1
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==2}?'today':''">
+                    <span th:class="${reservedDates.contains(2)==true}?'reserved':''">
+                        2
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==3}?'today':''">
+                    <span th:class="${reservedDates.contains(3)==true}?'reserved':''">
+                        3
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==4}?'today':''">
+                    <span th:class="${reservedDates.contains(4)==true}?'reserved':''">
+                        4
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==5}?'today':''">
+                    <span th:class="${reservedDates.contains(5)==true}?'reserved':''">
+                        5
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==6}?'today':''">
+                    <span th:class="${reservedDates.contains(6)==true}?'reserved':''">
+                        6
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==7}?'today':''">
+                    <span th:class="${reservedDates.contains(7)==true}?'reserved':''">
+                        7
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==8}?'today':''">
+                    <span th:class="${reservedDates.contains(8)==true}?'reserved':''">
+                        8
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==9}?'today':''">
+                    <span th:class="${reservedDates.contains(9)==true}?'reserved':''">
+                        9
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==10}?'today':''">
+                    <span th:class="${reservedDates.contains(10)==true}?'reserved':''">
+                        10
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==11}?'today':''">
+                    <span th:class="${reservedDates.contains(11)==true}?'reserved':''">
+                        11
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==12}?'today':''">
+                    <span th:class="${reservedDates.contains(12)==true}?'reserved':''">
+                        12
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==13}?'today':''">
+                    <span th:class="${reservedDates.contains(13)==true}?'reserved':''">
+                        13
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==14}?'today':''">
+                    <span th:class="${reservedDates.contains(14)==true}?'reserved':''">
+                        14
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==15}?'today':''">
+                    <span th:class="${reservedDates.contains(15)==true}?'reserved':''">
+                        15
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==16}?'today':''">
+                    <span th:class="${reservedDates.contains(16)==true}?'reserved':''">
+                        16
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==17}?'today':''">
+                    <span th:class="${reservedDates.contains(17)==true}?'reserved':''">
+                        17
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==18}?'today':''">
+                    <span th:class="${reservedDates.contains(18)==true}?'reserved':''">
+                        18
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==19}?'today':''">
+                    <span th:class="${reservedDates.contains(19)==true}?'reserved':''">
+                        19
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==20}?'today':''">
+                    <span th:class="${reservedDates.contains(20)==true}?'reserved':''">
+                        20
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==21}?'today':''">
+                    <span th:class="${reservedDates.contains(21)==true}?'reserved':''">
+                        21
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==22}?'today':''">
+                    <span th:class="${reservedDates.contains(22)==true}?'reserved':''">
+                        22
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==23}?'today':''">
+                    <span th:class="${reservedDates.contains(23)==true}?'reserved':''">
+                        23
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==24}?'today':''">
+                    <span th:class="${reservedDates.contains(24)==true}?'reserved':''">
+                        24
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==25}?'today':''">
+                    <span th:class="${reservedDates.contains(25)==true}?'reserved':''">
+                        25
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==26}?'today':''">
+                    <span th:class="${reservedDates.contains(26)==true}?'reserved':''">
+                        26
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==27}?'today':''">
+                    <span th:class="${reservedDates.contains(27)==true}?'reserved':''">
+                        27
+                    </span>
+                </span></li>
+                <li><span th:class="${currentDay==28}?'today':''">
+                    <span th:class="${reservedDates.contains(28)==true}?'reserved':''">
+                        28
+                    </span>
+                </span></li>
+                <li th:if="${currentMonth!=2 || (currentMonth==2 && leap==true)}">
+                    <span th:class="${currentDay==29}?'today':''">
+                        <span th:class="${reservedDates.contains(29)==true}?'reserved':''">
+                        29
+                        </span>
+                    </span>
+                </li>
+                <li th:if="${currentMonth!=2}"><span th:class="${currentDay==30}?'today':''">
+                    <span th:class="${reservedDates.contains(30)==true}?'reserved':''">
+                        30
+                    </span>
+                </span></li>
+                <li th:if="${currentMonth==1 || currentMonth==3 || currentMonth==5 || currentMonth==7 ||
+                        currentMonth==8 || currentMonth==10 || currentMonth==12}">
+                    <span th:class="${currentDay==31}?'today':''">
+                        <span th:class="${reservedDates.contains(31)==true}?'reserved':''">
+                            31
+                        </span>
+                    </span>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</div>
+<div th:replace="~{fragments::footer}"></div>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{fragments::head}"></head>
+<body>
+
+<!-- Wrap all page content here -->
+<div id="wrap" class="">
+    <!-- Fixed navbar -->
+
+      <nav  th:replace="~{fragments::navbar}"></nav>
+
+
+      <div  th:replace="~{fragments::banner}"></div>
+
+<!--everything upside is common to all website-->
+  <!-- Begin page content -->
+
+
+
+    <div class="container">
+        <div class="page-header text-center">
+            <h1>L'evolution du chantier</h1>
+
+      </div>
+
+      <ul class="timeline">
+          <li th:each="ConstructionArticle, iterationStatus : ${ConstructionArticleList}" th:class="(${iterationStatus.count}%2 != 0)? '' : 'timeline-inverted'">
+            <div class="timeline-badge primary"><a><i class="glyphicon glyphicon-record" rel="tooltip" ></i></a></div>
+            <div class="timeline-panel">
+                <h2 th:text="${ConstructionArticle.date}"></h2>
+              <h1 th:text="${ConstructionArticle.titleFR}"></h1>
+
+              <div class="timeline-heading">
+
+                  <img class="img-responsive" th:src="'constructionarticlepic1?id='+${ConstructionArticle.id}"/>
+
+              </div>
+              <div class="timeline-body">
+                  <p th:text="${ConstructionArticle.contentFR}"></p>
+              </div>
+            </div>
+          </li>
+
+
+
+
+          <li class="clearfix" style="float: none;"></li>
+      </ul>
+  </div>
+
+
+
+
+</div>
+<div th:replace="~{fragments::footer}"></div>
+</body>
+
+</html>

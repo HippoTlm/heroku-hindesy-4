@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="~{fragments::head}"></head>
+
+<body>
+
+<div id="wrap" class="">
+
+    <nav th:replace="~{fragments::navbar}"></nav>
+
+    <div th:replace="~{fragments::banner}"></div>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="page-header">
+                <h1>Vous y êtes presque ! <3</h1>
+            </div>
+        </div>
+
+        <div class="row top-space">
+            Payer avec PayPal :
+        </div>
+
+        <div class="row top-space">
+            <div id="paypal-button-container"></div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!--PAYPAL MANAGEMENT BELOW-->
+
+
+<!--
+Check this out when it will be about actually become a PayPal client (with an Hindesy account):
+https://developer.paypal.com/docs/integration/direct/express-checkout/integration-jsv4/client-side-REST-integration/
+This will be to integrate a client-side PayPal manager interacting with the PayPal button.
+-->
+
+<!--Script managing the PayPal button-->
+<script>
+
+    // Render the PayPal button
+
+    paypal.Button.render({
+
+        env: 'sandbox', // sandbox | production
+
+        style: {
+            label: 'paypal',
+            size:  'medium',    // small | medium | large | responsive
+            shape: 'rect',     // pill | rect
+            color: 'blue',     // gold | blue | silver | black
+            tagline: false
+        },
+
+        client: {
+            sandbox:    'Acioklt6EyWYlYjwuHvLwerOy8WKNPzfsQLZs0VkOUN45jHswEAJmCGPDkeKQ8LOsY7QLMApFq_I4Yiv',
+            production: 'xxxxxxxxxxx'
+        },
+
+        payment: function(data, actions) {
+            return actions.payment.create({
+                payment: {
+                    transactions: [
+                        {
+                            amount: { total: '70.00', currency: 'EUR' }
+                        }
+                    ]
+                }
+            });
+        },
+
+        onAuthorize: function(data, actions) {
+            return actions.payment.execute().then(function() {
+                window.alert('Paiement complété !');
+                window.location = "confirmation";
+            });
+        }
+
+    }, '#paypal-button-container');
+
+</script>
+<div th:replace="~{fragments::footer}"></div>
+</body>
+
+</html>

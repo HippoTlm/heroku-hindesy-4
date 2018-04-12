@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{fragments::head}"></head>
+<body>
+
+<div id="wrap" class="">
+    <nav  th:replace="~{fragments::navbar}"></nav>
+    <div  th:replace="~{fragments::banner}"></div>
+    <div class="container">
+
+
+    <div class="row">
+        <div class="top-space">
+            <div class="page-header">
+                <h1>Qui sommes-nous ?</h1>
+            </div>
+
+
+            <div class="col-lg-6">
+                <p>
+                    Nous sommes deux amies étudiantes en école d'ingénieur à Lille,
+                    âgées de 21 ans réunies autour d'un projet commun. Actuellement en
+                    spécialité conception mécanique
+                    nous construsions notre projet en parrallèle de nos études.
+                    A la fois simples, peu couteuses,
+                    écologiques, nous sommes convaincue que les Tiny House peuvent être une solution durable de logement dans
+                    un monde en pleine mutation.
+                    C'est pourquoi nous nous sommes lancées il y a 2 ans dans la réalisation de ce projet avec pour ambition
+                    de mettre notre Tiny House en location, afin de rentabiliser nos frais, mais surtout de prouver
+                    qu'une TinyHouse peut être une alternative crédible à nos modes de logements actuels.
+                    <b>Gaëlle et Marie Mariam.</b> </p>
+
+            </div>
+
+            <div class=" col-lg-offset-1 col-lg-3">
+
+                <img class="img-responsive img-rounded" src="img\authorphoto.png" />
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div th:replace="~{fragments::footer}"></div>
+</body>
+</html>

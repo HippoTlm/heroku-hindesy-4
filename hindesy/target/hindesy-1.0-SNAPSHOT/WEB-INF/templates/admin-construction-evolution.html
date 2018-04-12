@@ -1,0 +1,152 @@
+
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{adminfragments::admin-head}"></head>
+
+<body>
+
+<!-- Wrap all page content here -->
+<div id="wrap" class="">
+    <!-- Fixed navbar -->
+
+    <nav th:replace="~{adminfragments::admin-navbar}"></nav>
+    <div th:replace="~{adminfragments::admin-banner}"></div>
+
+<!--everything upside is common to all website-->
+  <!-- Begin page content -->
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h1>Liste des articles "Construction"</h1>
+            </div>
+            <div class="edit col-lg-6">
+                <a href="#" id="toggler">
+                <button type="button" class="btn btn-success">Ajouter un article "Construction"</button>
+                </a>
+            </div>
+        </div>
+
+        <div id="toggle">
+
+            <form method="post" enctype="multipart/form-data" >
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label for="titleFR">Titre Français:</label></br>
+                        <textarea id="titleFR" name="titleFR" rows="1" cols="80" maxlenght="100"></textarea></br>
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="titleEN">Titre Anglais:</label></br>
+                        <textarea id="titleEN" name="titleEN" rows="1" cols="80" maxlenght="100"></textarea></br>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <label for="contentFR">Contenu Français:</label></br>
+                        <textarea id="contentFR" name="contentFR" rows="25" cols="80" maxlenght="2000"></textarea></br>
+                    </div>
+                    <div class="col-lg-6">
+                        <label for="contentEN">Contenu Anglais:</label></br>
+                        <textarea id="contentEN" name="contentEN" rows="25" cols="80" maxlenght="2000"></textarea></br>
+
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <label for="date">Date :</label>
+                        <input id="date" type="date" value="2017-01-01" name="date" size="40" ></br>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <label for="inputPicture1"> photo 1</label></br>
+                        <input id="inputPicture1" type="file" name="inputPicture1" ></br>
+
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btnform">Valider</button>
+
+            </form>
+        </div>
+        <hr/>
+
+        <div>
+            <div class="article" th:each="ConstructionArticle : ${ConstructionArticleList}">
+                <div class="row" th:id="${ConstructionArticle.id}">
+                    <!--AJOUTER UNE CONDITION SI VERSION FRANÇAISE OU ANGLAISE-->
+                    <div class="col-lg-6">
+                        <h1 th:text="${ConstructionArticle.date}"></h1>
+                    </div>
+                    <div class="edit col-lg-6">
+                        <a th:href="'/admin/ModifyConstruction?idArticle='+${ConstructionArticle.getId()}">
+                            <button type="button" class="btn btn-warning">Modifier</button></a>
+                        <a th:href="'/admin/DeleteConstruction?idArticle='+${ConstructionArticle.getId()}">
+                            <button type="button" class="btn btn-danger">Supprimer</button></a>
+
+                    </div>
+                </div>
+                <div class="row" th:id="${ConstructionArticle.id}">
+                    <!--AJOUTER UNE CONDITION SI VERSION FRANÇAISE OU ANGLAISE-->
+                    <div class="col-lg-6">
+                        <h1 th:text="${ConstructionArticle.titleFR}"></h1>
+                    </div>
+                    <div class="col-lg-6">
+                        <h1 th:text="${ConstructionArticle.titleEN}"></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6  article-content">
+                        <p th:text="${ConstructionArticle.contentFR}"></p>
+                    </div>
+
+                    <div class="col-lg-6  article-content">
+                        <p th:text="${ConstructionArticle.contentEN}"></p>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-12 ">
+                        <div class="gal row">
+                            <img class="col-lg-4" th:src="'../constructionarticlepic1?id='+${ConstructionArticle.id}"/>
+
+
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+</div>
+<script>
+
+
+    // On attend que la page soit chargée
+    jQuery(document).ready(function()
+    {
+        // On cache la zone de texte
+        jQuery('#toggle').hide();
+        // toggle() lorsque le lien avec l'ID #toggler est cliqué
+        jQuery('a#toggler').click(function()
+        {
+            jQuery('#toggle').toggle(400);
+            return false;
+        });
+    });
+    /* ]]> */
+</script>
+</body>
+
+</html>

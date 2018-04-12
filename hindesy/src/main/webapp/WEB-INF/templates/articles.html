@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{fragments::head}"></head>
+<body>
+
+<div id="wrap" class="">
+    <nav th:replace="~{fragments::navbar}"></nav>
+    <div th:replace="~{fragments::banner}"></div>
+<div class="container">
+    <div class="top-space">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="article" th:each="newsArticle : ${newsArticleList}">
+                    <div class="row" th:id="${newsArticle.id}">
+                        <!--AJOUTER UNE CONDITION SI VERSION FRANÇAISE OU ANGLAISE-->
+                        <h2 th:text="${newsArticle.date}"></h2>
+                        <h1 th:text="${newsArticle.titleFR}"></h1>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12  article-content">
+                            <p th:text="${newsArticle.contentFR}"></p>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12 ">
+                            <div class="gal row">
+                                <img class="col-lg-4" th:src="'newsarticlepic1?id='+${newsArticle.id}"/>
+                                <img class="col-lg-4" th:src="'newsarticlepic2?id='+${newsArticle.id}"/>
+                                <img  class="col-lg-4" th:src="'newsarticlepic3?id='+${newsArticle.id}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+
+
+                </div>
+
+            </div>
+            <div class="col-lg-4">
+                <div class=" bandeau-equipe">
+                    <div class="article" th:each="newsArticle : ${newsArticleList}">
+                        <div class="sommaire row">
+                            <a th:href="'#'+${newsArticle.id}">
+                                <h3 th:text="${newsArticle.titleFR}"></h3>
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+<div th:replace="~{fragments::footer}"></div>
+</body>
+</html>

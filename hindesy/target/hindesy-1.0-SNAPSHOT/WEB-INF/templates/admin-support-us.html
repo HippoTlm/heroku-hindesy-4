@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{adminfragments::admin-head}"></head>
+<body>
+
+<div id="wrap" class="">
+    <nav th:replace="~{adminfragments::admin-navbar}"></nav>
+    <div th:replace="~{adminfragments::admin-banner}"></div>
+    <div class="container">
+
+
+
+
+        <div class="row">
+            <div class="col-lg-6">
+                <h1>Liste des partenaires</h1>
+            </div>
+            <div class="edit col-lg-6">
+                <a href="#" id="togglerPartner">
+                <button type="button" class="btn btn-success">Ajouter un partenaire</button></a>
+            </div>
+        </div>
+            <div id="togglePartner">
+                <form method="post" enctype="multipart/form-data" >
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label for="name">Nom Partenaire:</label></br>
+                            <input id="name" name="name" maxlenght="50"></textarea></br>
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="inputPicture"> logo</label></br>
+                            <input id="inputPicture" type="file" name="image" ></br>
+
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success btnform">Valider</button>
+
+                </form>
+            </div>
+
+
+
+
+                <hr/>
+                        <div th:each="Partner : ${PartnersList}" >
+
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="cropImg img-partenaire">
+                                        <img th:src="'../picturepartner?id='+${Partner.id}"/>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-4">
+                                    <h1 th:text="${Partner.name}"></h1>
+                                </div>
+
+
+                                <div class="edit col-lg-4">
+                                    <a th:href="'../partnerDelete?id='+${Partner.id}">
+                                        <button type="button" class="btn btn-danger">Supprimer</button></a>
+                                </div>
+
+                            </div>
+                            <hr/>
+                        </div>
+
+
+
+                </div>
+
+
+
+    </div>
+<script>
+
+
+    // On attend que la page soit chargée
+    jQuery(document).ready(function()
+    {
+        // On cache la zone de texte
+        jQuery('#togglePartner').hide();
+        // toggle() lorsque le lien avec l'ID #toggler est cliqué
+        jQuery('a#togglerPartner').click(function()
+        {
+            jQuery('#togglePartner').toggle(400);
+            return false;
+        });
+    });
+    /* ]]> */
+</script>
+</body>
+</html>
