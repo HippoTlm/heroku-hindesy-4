@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="~{fragments::head}"></head>
-<div th:replace="~{fragments::banner}"></div>
+
 <body>
 
 <div id="wrap" class="">
-
+    <nav  th:replace="~{fragments::navbar}"></nav>
+    <div  th:replace="~{fragments::banner}"></div>
     <div class="container">
-        <div class="row"><div  th:replace="~{fragments::banner}"></div></div>
+
         <div class="row">
             <div class="top-space">
                     <div class="page-header">
