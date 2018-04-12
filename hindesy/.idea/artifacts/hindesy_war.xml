@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="hindesy:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="hindesy-1.0-SNAPSHOT.war">
-      <element id="artifact" artifact-name="hindesy:war exploded" />
-    </root>
-  </artifact>
-</component>
