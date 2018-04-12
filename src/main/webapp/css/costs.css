@@ -1,0 +1,31 @@
+/* Realisation based on the tutoriel proposed at
+   https://la-cascade.io/diagrammes-circulaires-flexibles-avec-css-et-svg/ */
+
+.costs-pie {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: yellowgreen;
+    background-image: linear-gradient(to right, transparent 50%, currentColor 0);
+    color: #655;
+}
+
+.costs-pie::before {
+    content: '';
+    display: block;
+    margin-left: 50%;
+    height: 100%;
+    border-radius: 0 100% 100% 0 / 50%;
+    background-color: inherit;
+    transform-origin: left;
+    animation:
+            spin 1s linear,
+            bg 2s step-end;
+}
+
+@keyframes spin {
+    to { transform: rotate(.5turn); }
+}
+
+@keyframes bg {
+    50% { background: currentColor; }
+}

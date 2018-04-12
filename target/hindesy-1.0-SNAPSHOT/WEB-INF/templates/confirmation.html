@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="~{fragments::head}"></head>
+
+<body>
+
+<div id="wrap" class="">
+
+    <nav th:replace="~{fragments::navbar}"></nav>
+
+    <div th:replace="~{fragments::banner}"></div>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="page-header">
+                <h1>Féliciations !</h1>
+            </div>
+        </div>
+
+        <div class="row top-space">
+            Vous venez de réserver la tiny house pour quelques jours. Nous vous remercions !
+        </div>
+
+    </div>
+
+</div>
+<div th:replace="~{fragments::footer}"></div>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="~{fragments::head}"></head>
+
+<body>
+<!-- Wrap all page content here -->
+<div id="wrap" class="">
+    <!-- Fixed navbar -->
+    <nav th:replace="~{fragments::navbar}"></nav>
+    <div  th:replace="~{fragments::banner}"></div>
+    <!--everything upside is common to all website-->
+    <!-- Begin page content -->
+
+    <div class="container">
+        <div class="row">
+            <div class="page-header">
+                <h1>Les coûts</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <p>Afin de mener à bien notre projet, nous avons besoin de financement. Ce diagramme présente
+                    notre budget. Les principales sources de dépenses correspondent à l'achat de panneaux photvoltaïques et à l'achat
+                    de notre principal matériau de construction, le bois. Il sera nécessaire pour la construction de la structure,
+                    pour le bardage mais aussi pour l'aménagement intérieur. Les matériaux isolants représentent également une part importante de
+                    notre budget. Soucieuse d'utiliser des matériaux de qualité afin d'obtenir les meilleurs performances énergétiques, notre choix
+                    d'isolants s'est porté vers des composants haut de gamme.
+                </p>
+            </div>
+            <div class="col-lg-offset-1 col-md-offset-1 col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                <img class="img-responsive" src="img\budget.png" />
+            </div>
+        </div>
+    </div>
+
+</div>
+<div th:replace="~{fragments::footer}"></div>
+</body>
+
+</html>
