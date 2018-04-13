@@ -205,7 +205,6 @@ public class NewsArticleDao {
 
     /**
      * Delete an article about the news in the DB
-     *
      * @param id the identifier of the article
      */
     public void deleteArticle(Integer id) {
@@ -236,6 +235,11 @@ public class NewsArticleDao {
         }
     }
 
+    /**
+     * Returns the path of the first picture of the article
+     * @param id the article identifier
+     * @return the path
+     */
     public Path getPicturePath1(Integer id) {
         try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement("SELECT photo1 FROM news_article WHERE id= ?")) {
@@ -255,6 +259,11 @@ public class NewsArticleDao {
 
     }
 
+    /**
+     * Returns the path of the second picture of the article
+     * @param id the article identifier
+     * @return the path
+     */
     public Path getPicturePath2(Integer id) {
         try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement("SELECT photo2 FROM news_article WHERE id= ?")) {
@@ -274,6 +283,11 @@ public class NewsArticleDao {
 
     }
 
+    /**
+     * Returns the path of the third picture of the article
+     * @param id the article identifier
+     * @return the path
+     */
     public Path getPicturePath3(Integer id) {
         try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement("SELECT photo3 FROM news_article WHERE id= ?")) {

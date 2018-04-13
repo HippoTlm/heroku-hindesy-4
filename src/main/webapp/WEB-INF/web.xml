@@ -24,5 +24,12 @@
         <filter-name>AdminFiltre</filter-name>
         <url-pattern>/admin/*</url-pattern>
     </filter-mapping>
-
+    <filter>
+        <filter-name>EncodingFilter</filter-name>
+        <filter-class>filters.EncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>EncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>

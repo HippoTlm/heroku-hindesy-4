@@ -68,4 +68,21 @@ public class FormHelpersDao {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Delete a form helper in the BDD function of its identifier
+     * @param id the form helper identifier
+     */
+    public void deleteFormHelper(Integer id) {
+
+        String request = "DELETE * FROM form_helper WHERE id = ?";
+
+        try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection();
+             PreparedStatement statement = connection.prepareStatement(request)) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

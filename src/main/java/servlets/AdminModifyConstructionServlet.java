@@ -30,7 +30,7 @@ public class AdminModifyConstructionServlet extends AbstractGenericServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        resp.setCharacterEncoding("UTF8");
         Integer idArticle = Integer.parseInt(req.getParameter("idArticle"));
 
         WebContext context = new WebContext(req, resp, req.getServletContext());
@@ -47,7 +47,7 @@ public class AdminModifyConstructionServlet extends AbstractGenericServlet {
 
         // RECUPERATION DES PARAMETRES
 
-
+        resp.setCharacterEncoding("UTF8");
         Integer idArticle = parseInt(req.getParameter("idArticle"));
         String titleFR = req.getParameter("titleFR");
         String titleEN = req.getParameter("titleEN");

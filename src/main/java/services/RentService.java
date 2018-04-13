@@ -40,10 +40,9 @@ public class RentService {
 
     /**
      * Returns the list of all rents in the DB
-     *
-     * @return rents the said list
+     * @return rentings the said list
      */
-    public List<Rent> listRents() { return rentDao.listRents(); }
+    public List<Rent> listAllComingRents() { return rentDao.listAllComingRentings(); }
 
     /**
      * Add a new rent in the DB

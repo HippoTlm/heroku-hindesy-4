@@ -88,7 +88,8 @@ public class ConstructionArticleService {
 
 
     public Path getPicturePath1(Integer id) {
-        Path picturePath = constructionArticleDao.getPicturePath1(id);
+
+        Path picturePath = constructionArticleDao.getPicturePath(id);
         if (picturePath == null) {
             try {
                 picturePath = Paths.get(this.getClass().getClassLoader().getResource("Authorphoto.jpg").toURI());
@@ -97,6 +98,7 @@ public class ConstructionArticleService {
             }
 
         }
+
         return picturePath;
     }
 }

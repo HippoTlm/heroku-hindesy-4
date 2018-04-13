@@ -24,13 +24,11 @@ public class AdminWelcomeServlet extends AbstractGenericServlet {
 
         String newPosition = NewsArticleService.getInstance().getTinyPosition();
         context.setVariable("TinyPosition", newPosition);
-
-
-
-
+        resp.setCharacterEncoding("UTF8");
         context.setVariable("formHelpersList", AdminWelcomeService.getInstance().listAllFormHelpers());
         context.setVariable("formDonationList", AdminWelcomeService.getInstance().listAllFormDonations());
         context.setVariable("formPartnersList", AdminWelcomeService.getInstance().listAllFormPartners());
+        context.setVariable("rentingsList", AdminWelcomeService.getInstance().listAllComingRentings());
 
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         templateEngine.process("admin", context, resp.getWriter());
@@ -39,33 +37,20 @@ public class AdminWelcomeServlet extends AbstractGenericServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
         // RECUPERATION DES PARAMETRES
 
-
         String Position = req.getParameter("position");
+        resp.setCharacterEncoding("UTF8");
+        System.out.println("servlet : " + Position);
 
-        System.out.println("servlet : "+Position);
-
- try {
-
-
-
+        try {
             NewsArticleService.getInstance().updatePosition(Position);
-
             // REDIRECTION VERS admin-article
             resp.sendRedirect("home");
 
         } catch (IllegalArgumentException e) {
             req.getSession().setAttribute("NewsArticleError", e.getMessage());
-
-
             resp.sendRedirect("home");
         }
-
-
-
-
-
     }
 }

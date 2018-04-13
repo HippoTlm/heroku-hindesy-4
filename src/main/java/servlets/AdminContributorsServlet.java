@@ -26,7 +26,7 @@ public class AdminContributorsServlet extends AbstractGenericServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         WebContext context = new WebContext(req, resp, req.getServletContext());
-
+        resp.setCharacterEncoding("UTF8");
         List<Contributor> ContributorsList = ContributorService.getInstance().listAllContributorsFR();
         context.setVariable("ContributorsList", ContributorsList);
 
@@ -40,7 +40,7 @@ public class AdminContributorsServlet extends AbstractGenericServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        resp.setCharacterEncoding("UTF8");
 
         // RECUPERATION DES PARAMETRES
 

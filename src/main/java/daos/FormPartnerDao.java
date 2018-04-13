@@ -60,5 +60,20 @@ public class FormPartnerDao {
         }
     }
 
+    /**
+     * Delete a form partner in the BDD function of its identifier
+     * @param id the form partner identifier
+     */
+    public void deleteFormPartner(Integer id) {
 
+        String request = "DELETE * FROM form_partner WHERE id = ?";
+
+        try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection();
+             PreparedStatement statement = connection.prepareStatement(request)) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

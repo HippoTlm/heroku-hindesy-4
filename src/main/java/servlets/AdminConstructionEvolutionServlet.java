@@ -30,7 +30,7 @@ public class AdminConstructionEvolutionServlet extends AbstractGenericServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         WebContext context = new WebContext(req, resp, req.getServletContext());
-
+        resp.setCharacterEncoding("UTF8");
         List<ConstructionArticle> ConstructionArticleList =
                 ConstructionArticleService.getInstance().listConstructionArticles();
         context.setVariable("ConstructionArticleList", ConstructionArticleList);
@@ -44,7 +44,7 @@ public class AdminConstructionEvolutionServlet extends AbstractGenericServlet {
 
 
         // RECUPERATION DES PARAMETRES
-
+        resp.setCharacterEncoding("UTF8");
 
         String titleFR = req.getParameter("titleFR");
         String titleEN = req.getParameter("titleEN");

@@ -30,12 +30,12 @@ public class ClientService {
     public static ClientService getInstance() { return ClientService.ClientServiceHolder.instance; }
 
     /**
-     * Returns a specific client function of his email address
+     * Returns a specific client function of his identifier
      *
-     * @param email the client email address
+     * @param id the client identifier
      * @return the instance of Client requested
      */
-    public Client getClient(String email) { return clientDao.getClient(email); }
+    public Client getClient(Integer id) { return clientDao.getClient(id); }
 
     /**
      * Add a new client in the DB

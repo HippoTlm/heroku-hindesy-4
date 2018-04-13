@@ -13,7 +13,7 @@ public abstract class AbstractGenericServlet extends HttpServlet {
         ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver(servletContext);
         templateResolver.setPrefix("/WEB-INF/templates/");
         templateResolver.setSuffix(".html");
-
+templateResolver.setCharacterEncoding("UTF-8");
         TemplateEngine templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);
         templateEngine.addDialect(new Java8TimeDialect());

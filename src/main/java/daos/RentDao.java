@@ -33,7 +33,8 @@ public class RentDao {
                             resultSet.getInt("id"),
                             resultSet.getDate("dateDebut").toLocalDate(),
                             resultSet.getDate("dateFin").toLocalDate(),
-                            resultSet.getString("email")
+                            resultSet.getString("email"),
+                            resultSet.getBoolean("confirmed")
                     );
                 }
             }
@@ -44,30 +45,33 @@ public class RentDao {
     }
 
     /**
-     * Returns the list of all rents in the DB
-     *
-     * @return rents the said list
+     * Returns the list of all future rentings in the DB
+     * @return rentings the said list
      */
-    public List<Rent> listRents() {
-        List<Rent> rents = new ArrayList<>();
+    public List<Rent> listAllComingRentings() {
+        List<Rent> rentings = new ArrayList<>();
         String s = "SELECT * FROM rent ORDER BY rent.id";
         try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection();
              Statement statement = connection.createStatement()) {
             try (ResultSet resultSet = statement.executeQuery(s)) {
                 while (resultSet.next()) {
-                    rents.add(
-                            new Rent(
-                                    resultSet.getInt("id"),
-                                    resultSet.getDate("dateDebut").toLocalDate(),
-                                    resultSet.getDate("dateFin").toLocalDate(),
-                                    resultSet.getString("email")
-                            ));
+                    if (resultSet.getDate("dateDebut").toLocalDate().isAfter(LocalDate.now())) {
+                        rentings.add(
+                                new Rent(
+                                        resultSet.getInt("id"),
+                                        resultSet.getDate("dateDebut").toLocalDate(),
+                                        resultSet.getDate("dateFin").toLocalDate(),
+                                        resultSet.getString("email"),
+                                        resultSet.getBoolean("confirmed")
+                                )
+                        );
+                    }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return rents;
+        return rentings;
     }
 
     /**
@@ -139,5 +143,22 @@ public class RentDao {
         }
 
         return reservedDates;
+    }
+
+    /**
+     * Delete a renting in the BDD function of its identifier
+     * @param id the renting identifier
+     */
+    public void deleteRent(Integer id) {
+
+        String request = "DELETE * FROM rent WHERE id = ?";
+
+        try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection();
+             PreparedStatement statement = connection.prepareStatement(request)) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

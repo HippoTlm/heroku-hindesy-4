@@ -35,7 +35,7 @@ public class AdminArticlesServlet extends AbstractGenericServlet {
 
         List<NewsArticle> newsArticleList = NewsArticleService.getInstance().listNewsArticles();
         context.setVariable("newsArticleList", newsArticleList);
-
+        resp.setCharacterEncoding("UTF8");
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         templateEngine.process("admin-article", context, resp.getWriter());
     }
@@ -47,18 +47,18 @@ public class AdminArticlesServlet extends AbstractGenericServlet {
 
 
         // RECUPERATION DES PARAMETRES
+    resp.setCharacterEncoding("UTF8");
 
 
-        String titleFR = req.getParameter("titleFR");
+
+
+    String titleFR = req.getParameter("titleFR");
         String titleEN = req.getParameter("titleEN");
         String dateString = req.getParameter("date");
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate dateLocal = LocalDate.parse(dateString, dateFormat);
         String contentFR = req.getParameter("contentFR");
         String contentEN = req.getParameter("contentEN");
-
-
-
 
 
         Part picture1 = req.getPart("inputPicture1");

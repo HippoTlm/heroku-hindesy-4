@@ -28,11 +28,12 @@ public class Rent {
      * @param dateFin its ending date
      * @param email the email address of the client
      */
-    public Rent(Integer id, LocalDate dateDebut, LocalDate dateFin, String email) {
+    public Rent(Integer id, LocalDate dateDebut, LocalDate dateFin, String email, boolean confirmed) {
         this.id = id;
         this.dateDebut = dateDebut;
         this.dateFin = dateFin;
         this.email = email;
+        this.confirmed = confirmed;
     }
 
     /* Getters */

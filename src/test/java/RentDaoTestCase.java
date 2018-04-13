@@ -44,7 +44,7 @@ public class RentDaoTestCase {
     @Test
     public void shouldListRent() {
         // WHEN
-        List<Rent> rents = rentDao.listRents();
+        List<Rent> rents = rentDao.listAllComingRentings();
         // THEN
         assertThat(rents).hasSize(2);
         assertThat(rents).extracting("id", "dateDebut", "dateFin", "email").containsOnly(
@@ -52,12 +52,14 @@ public class RentDaoTestCase {
                         1,
                         LocalDate.of(2018,9,19),
                         LocalDate.of(2018, 9,20),
-                        "monsieur@hello.com"
+                        "monsieur@hello.com",
+                        true
                 ), tuple(
                         2,
                         LocalDate.of(2018,10,19),
                         LocalDate.of(2018, 10,20),
-                        "madame@hello.com"
+                        "madame@hello.com",
+                        false
                 )
         );
     }

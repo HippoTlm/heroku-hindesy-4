@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import javax.xml.crypto.Data;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -195,10 +196,12 @@ public class ConstructionArticleDaoTestCase {
     }
 
     @Test
-    public void shouldGetPicturePath1() {
+    public void shouldGetPicturePath() {
+        // GIVEN
+        Path thePath = Paths.get("../../../img/logo-1.png");
         // WHEN
-        Path path = caDao.getPicturePath1(1);
+        Path path = caDao.getPicturePath(1);
         // THEN
-        assertThat(path).isEqualTo("../../../img/logo-1.png");
+        assertThat(path).isEqualTo(thePath);
     }
 }

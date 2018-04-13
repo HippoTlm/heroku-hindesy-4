@@ -31,7 +31,7 @@ public class AdminModifyNewsServlet extends AbstractGenericServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        resp.setCharacterEncoding("UTF8");
         Integer idArticle = Integer.parseInt(req.getParameter("idArticle"));
 
         WebContext context = new WebContext(req, resp, req.getServletContext());

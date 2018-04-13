@@ -29,7 +29,7 @@ public class AdminSupportUsServlet extends AbstractGenericServlet {
 
         List<Partner> PartnersList = PartnerService.getInstance().listAllPartners();
         context.setVariable("PartnersList", PartnersList);
-
+        resp.setCharacterEncoding("UTF8");
         TemplateEngine templateEngine = createTemplateEngine(req.getServletContext());
         templateEngine.process("admin-support-us", context, resp.getWriter());
     }
@@ -44,7 +44,7 @@ public class AdminSupportUsServlet extends AbstractGenericServlet {
 
         // RECUPERATION DES PARAMETRES
 
-
+        resp.setCharacterEncoding("UTF8");
         String name = req.getParameter("name");
         Part picture = req.getPart("image");
         Path picturePath = null;

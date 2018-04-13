@@ -15,19 +15,20 @@ import java.util.List;
 public class ClientDao {
 
     /**
-     * Returns a specific customer function of his email address
+     * Returns a specific customer function of his identifier
      *
-     * @param email the client email address
+     * @param id the client identifier
      * @return the instance of Client requested
      */
-    public Client getClient(String email) {
-        String s = "SELECT * FROM client WHERE email=?";
+    public Client getClient(Integer id) {
+        String s = "SELECT * FROM client WHERE id=?";
         try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(s)) {
-            statement.setString(1, email);
+            statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
                     return new Client(
+                            resultSet.getInt("id"),
                             resultSet.getString("firstName"),
                             resultSet.getString("lastName"),
                             resultSet.getString("email")
@@ -75,6 +76,7 @@ public class ClientDao {
                 while (resultSet.next()) {
                     clients.add(
                             new Client(
+                                    resultSet.getInt("id"),
                                     resultSet.getString("firstName"),
                                     resultSet.getString("lastName"),
                                     resultSet.getString("email")

@@ -2,10 +2,7 @@ package daos;
 
 import entities.FormDonation;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,5 +50,22 @@ public class FormDonationDao {
         }
 
         return formDonations;
+    }
+
+    /**
+     * Delete a form donation in the BDD function of its identifier
+     * @param id the form donation identifier
+     */
+    public void deleteFormDonation(Integer id) {
+
+        String request = "DELETE * FROM form_donation WHERE id = ?";
+
+        try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection();
+             PreparedStatement statement = connection.prepareStatement(request)) {
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

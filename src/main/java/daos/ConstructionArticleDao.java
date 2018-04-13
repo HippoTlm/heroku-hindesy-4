@@ -241,7 +241,7 @@ public class ConstructionArticleDao {
      * @param id the article identifier
      * @return the path of the picture
      */
-    public Path getPicturePath1(Integer id) {
+    public Path getPicturePath(Integer id) {
 
         String request = "SELECT photo FROM construction_article WHERE id= ?";
 
