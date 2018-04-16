@@ -18,6 +18,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
+
 @MultipartConfig
 @WebServlet("/admin/contributors")
 public class AdminContributorsServlet extends AbstractGenericServlet {
@@ -43,16 +44,14 @@ public class AdminContributorsServlet extends AbstractGenericServlet {
         resp.setCharacterEncoding("UTF8");
 
         // RECUPERATION DES PARAMETRES
-
-
         String firstname = req.getParameter("firstname");
         String lastname = req.getParameter("lastname");
         String label = req.getParameter("label");
         Part picture = req.getPart("image");
         Path picturePath = null;
-        if(picture != null) {
-            String filename = UUID.randomUUID().toString().substring(0,8) + "-" + picture.getSubmittedFileName();
-            picturePath= Paths.get(IMAGE_DIRECTORY_PATH, filename);
+        if (picture != null) {
+            String filename = UUID.randomUUID().toString().substring(0, 8) + "-" + picture.getSubmittedFileName();
+            picturePath = Paths.get(IMAGE_DIRECTORY_PATH, filename);
 
             try {
                 Files.copy(picture.getInputStream(), picturePath);
@@ -62,10 +61,7 @@ public class AdminContributorsServlet extends AbstractGenericServlet {
         }
 
         try {
-
-
-    ContributorService.getInstance().addContributor(firstname, lastname,picturePath.toString(),label);
-
+            ContributorService.getInstance().addContributor(firstname, lastname, picturePath.toString(), label, label);
 
             // REDIRECTION VERS admin-article
             resp.sendRedirect("contributors");
@@ -76,9 +72,6 @@ public class AdminContributorsServlet extends AbstractGenericServlet {
 
             resp.sendRedirect("modifier");
         }
-
-
-
 
 
     }

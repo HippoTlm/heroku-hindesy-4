@@ -134,7 +134,7 @@ public class ConstructionArticleDaoTestCase {
         try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection();
              Statement statement = connection.createStatement()) {
             try (ResultSet resultSet = statement.executeQuery("SELECT * FROM construction_article AS ca " +
-                    "INNER JOIN fr_article AS fa ON fa.idfr_article = ea.iden_article) " +
+                    "INNER JOIN fr_article AS fa ON fa.idfr_article = ea.iden_article " +
                     "INNER JOIN en_article AS ea ON ca.id = fa.idfr_article " +
                     "WHERE ca.id = (SELECT MAX(id) FROM ca)")) {
                 assertThat(resultSet.next()).isTrue();
@@ -148,6 +148,8 @@ public class ConstructionArticleDaoTestCase {
                 assertThat(resultSet.getString("ea.titleen")).isEqualTo("Some article");
                 assertThat(resultSet.getString("ea.contenten")).isEqualTo("New content");
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

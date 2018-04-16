@@ -106,7 +106,7 @@ public class PartnerDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
 
+        return null;
     }
 }

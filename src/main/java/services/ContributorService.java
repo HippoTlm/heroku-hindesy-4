@@ -52,8 +52,8 @@ public class ContributorService {
     /**
      * Add a new commercial Contributor in the DB
      */
-    public void addContributor(String firstName, String lastName, String photo, String fr_label) {
-        ContributorDao.addContributor(firstName, lastName, photo, fr_label);
+    public void addContributor(String firstName, String lastName, String photo, String fr_label, String en_label) {
+        ContributorDao.addContributor(firstName, lastName, photo, fr_label, en_label);
     }
 
     /**

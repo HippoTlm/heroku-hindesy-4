@@ -10,10 +10,8 @@ import java.util.List;
 
 public class ContributorDao {
 
-
-
     /**
-     * Returns the list of all commercial Contributors of the Hindesy project
+     * Returns the list of all contributors of the Hindesy project with their French label
      * @return Contributors the said list
      */
     public List<Contributor> listAllContributorsFR() {
@@ -44,6 +42,10 @@ public class ContributorDao {
         return Contributors;
     }
 
+    /**
+     * Returns the list of all contributors of the Hindesy project with their English label
+     * @return Contributors the said list
+     */
     public List<Contributor> listAllContributorsEN() {
         List<Contributor> Contributors = new ArrayList<>();
         String s = "SELECT * FROM contributors " +
@@ -73,25 +75,33 @@ public class ContributorDao {
     }
 
     /**
-     * Modify the path of the picture of a commercial Contributor in the DB
-     *
+     * Modify a contributor in the database
+     * @param id his identifier
+     * @param firstName his first name
+     * @param lastName his last name
+     * @param photo his picture
+     * @param fr_label his French label
+     * @param en_label his English label
      */
-    public void modifyContributor(Integer id, String firstName, String lastName, String photo, String fr_label, String en_label) {
-        String request = "UPDATE contributors SET firstName = ?, lastName = ?, picture = ? WHERE id = ? " +
-            "UPDATE fr_contributor SET label = ? WHERE id = (SELECT idFR_CONTRIBUTORS FROM contributors WHERE id= ?) "+
-            "UPDATE en_contributor SET label = ? WHERE id = (SELECT idEN_CONTRIBUTORS FROM contributors WHERE id= ?) ";
+    public void modifyContributor(Integer id, String firstName, String lastName, String photo,
+                                  String fr_label, String en_label) {
+        String request1 = "UPDATE contributors SET firstName = ?, lastName = ?, picture = ? WHERE id = ? ";
+        String request2 = "UPDATE fr_contributors SET label = ? WHERE id = (SELECT idFR_CONTRIBUTORS FROM contributors WHERE id = ?)";
+        String request3 = "UPDATE en_contributors SET label = ? WHERE id = (SELECT idEN_CONTRIBUTORS FROM contributors WHERE id = ?)";
         try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement(request)) {
-
+            try (PreparedStatement statement = connection.prepareStatement(request1)) {
                 statement.setString(1, firstName);
                 statement.setString(2, lastName);
                 statement.setString(3, photo);
                 statement.setInt(4, id);
-                statement.setString(5, fr_label);
-                statement.setInt(6, id);
-                statement.setString(7, en_label);
-                statement.setInt(8, id);
-
+                statement.executeUpdate();
+            } try (PreparedStatement statement = connection.prepareStatement(request2)) {
+                statement.setString(1, fr_label);
+                statement.setInt(2, id);
+                statement.executeUpdate();
+            } try (PreparedStatement statement = connection.prepareStatement(request3)) {
+                statement.setString(1, en_label);
+                statement.setInt(2, id);
                 statement.executeUpdate();
             }
         } catch (SQLException e) {
@@ -100,69 +110,39 @@ public class ContributorDao {
     }
 
     /**
-     * Add a new commercial Contributor in the DB
-     *
+     * Add a contributor in the data base.
+     * @param firstName his first name
+     * @param lastName his last name
+     * @param photo his picture
+     * @param fr_label his French label
+     * @param en_label his English label
      */
-    public void addContributor( String firstName, String lastName, String photo, String fr_label) {
-        //Insertion of the french content of the contributor in the table FR_contributor
-        /*Integer newId =0;
-        try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection();
-             PreparedStatement statement = connection.prepareStatement("SELECT MAX(id) FROM fr_contributors")) {
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    Integer idFromTable = resultSet.getInt("id");
-                        newId=idFromTable+1;
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-*/
+    public void addContributor(String firstName, String lastName, String photo, String fr_label, String en_label) {
 
-        String request2 = "INSERT INTO fr_contributors(label) " +
-                "VALUES (?)";
-        try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement(request2)) {
-                statement.setString(1, fr_label);
-
-                statement.executeUpdate();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-/*
-        //Insertion of the english content of the contributor in the table EN_contributor
-        String request3 = "INSERT INTO en_contributors(label) " +
-                "VALUES (?)";
-        try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection()) {
-            try (PreparedStatement statement = connection.prepareStatement(request3)) {
-                statement.setString(1, en_label);
-                statement.executeUpdate();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-*///
-        //Insertion of a new Newscontributor in the DB thanks to its picture in the table News_contributor
-        String request1 = "INSERT INTO contributors(firstName, lastName, picture, idFR_CONTRIBUTORS, idEN_CONTRIBUTORS) " +
-                "VALUES (?, ?, ?, (SELECT MAX(id) FROM fr_contributors),(SELECT MAX(id) FROM en_contributors))";
+        String request1 = "INSERT INTO contributors(firstName, lastName, picture) VALUES (?, ?, ?)";
+        String request2 = "INSERT INTO fr_contributors(label) VALUES (?)";
+        String request3 = "INSERT INTO en_contributors(label) VALUES (?)";
         try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection()) {
             try (PreparedStatement statement = connection.prepareStatement(request1)) {
                 statement.setString(1, firstName);
                 statement.setString(2, lastName);
                 statement.setString(3, photo);
                 statement.executeUpdate();
+            } try (PreparedStatement statement = connection.prepareStatement(request2)) {
+                statement.setString(1, fr_label);
+                statement.executeUpdate();
+            } try (PreparedStatement statement = connection.prepareStatement(request3)) {
+                statement.setString(1, en_label);
+                statement.executeUpdate();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     /**
-     * Delete a commercial Contributor from the DB
-     *
-     * @param id the name of the Contributor
+     * Deletes a contributor from the DB
+     * @param id the contributor identifier
      */
     public void deleteContributor(Integer id) {
 

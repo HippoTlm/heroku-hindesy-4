@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/deleteformhelper")
+@WebServlet("/admin/deleteformhelper")
 public class DeleteFormHelperServlet extends AbstractGenericServlet {
 
     @Override
@@ -18,6 +18,6 @@ public class DeleteFormHelperServlet extends AbstractGenericServlet {
 
         AdminWelcomeService.getInstance().deleteFormHelper(id);
 
-        resp.sendRedirect("/admin");
+        resp.sendRedirect("/admin/home");
     }
 }

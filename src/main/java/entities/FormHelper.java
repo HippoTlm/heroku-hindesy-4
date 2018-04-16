@@ -27,7 +27,7 @@ public class FormHelper {
     private Boolean shoes;
     private Boolean helmet;
     private Boolean gloves;
-    private String equipment;
+    private String equipments;
     private String size;
     private String email;
     private String phone;
@@ -42,21 +42,21 @@ public class FormHelper {
      * @param shoes if he has protection shoes or not
      * @param helmet if he has a helmet or not
      * @param gloves if he has protection gloves or not
-     * @param equipment if he has some specific equipments
+     * @param equipments if he has some specific equipments
      * @param size his shoes size
      * @param email his email
      * @param phone his phone number
      * @param message the message he would like to leave to explain how he could help
      */
     public FormHelper(Integer id, String firstName, String lastName, Boolean shoes, Boolean helmet, Boolean gloves,
-                  String equipment, String size, String email, String phone, String message) {
+                  String equipments, String size, String email, String phone, String message) {
         this.id = id;
         this. firstName = firstName;
         this.lastName = lastName;
         this.shoes = shoes;
         this.helmet = helmet;
         this.gloves = gloves;
-        this.equipment = equipment;
+        this.equipments = equipments;
         this.size = size;
         this.email = email;
         this.phone = phone;
@@ -77,7 +77,7 @@ public class FormHelper {
 
     public boolean hasGloves() { return gloves; }
 
-    public String getEquipment() { return equipment; }
+    public String getEquipments() { return equipments; }
 
     public String getSize() { return size; }
 

@@ -40,7 +40,7 @@ public class FormDonationDao {
                                     resultSet.getString("city"),
                                     resultSet.getString("country"),
                                     resultSet.getString("phone"),
-                                    resultSet.getDate("birthDate"),
+                                    resultSet.getDate("birthDate").toLocalDate(),
                                     resultSet.getBoolean("fiscalReceipt")
                             ));
                 }
@@ -58,7 +58,7 @@ public class FormDonationDao {
      */
     public void deleteFormDonation(Integer id) {
 
-        String request = "DELETE * FROM form_donation WHERE id = ?";
+        String request = "DELETE FROM form_donation WHERE id = ?";
 
         try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(request)) {

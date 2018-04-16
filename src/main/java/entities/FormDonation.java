@@ -1,6 +1,6 @@
 package entities;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * Class that embodies the content of the donation form someone filled on the page "Envie de nous soutenir ?".
@@ -25,7 +25,7 @@ public class FormDonation {
     private String city;
     private String country;
     private String phone;
-    private Date birthDate;
+    private LocalDate birthDate;
     private boolean fiscalReceipt;
 
     /**
@@ -48,7 +48,7 @@ public class FormDonation {
      */
     public FormDonation(Integer id, double amount, String email, String civility, String firstName, String lastName,
                         String address, String addressCompl, String postalCode, String city, String country,
-                        String phone, Date birthDate, boolean fiscalReceipt) {
+                        String phone, LocalDate birthDate, boolean fiscalReceipt) {
         this.id = id;
         this.amount = amount;
         this.email = email;
@@ -115,7 +115,7 @@ public class FormDonation {
         return phone;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 

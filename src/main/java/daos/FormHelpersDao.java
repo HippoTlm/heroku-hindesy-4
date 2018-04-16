@@ -58,7 +58,7 @@ public class FormHelpersDao {
             statement.setBoolean(3, newHelper.hasShoes());
             statement.setBoolean(4, newHelper.hasHelmet());
             statement.setBoolean(5, newHelper.hasGloves());
-            statement.setString(6, newHelper.getEquipment());
+            statement.setString(6, newHelper.getEquipments());
             statement.setString(7, newHelper.getSize());
             statement.setString(8, newHelper.getEmail());
             statement.setString(9, newHelper.getPhone());
@@ -75,7 +75,7 @@ public class FormHelpersDao {
      */
     public void deleteFormHelper(Integer id) {
 
-        String request = "DELETE * FROM form_helper WHERE id = ?";
+        String request = "DELETE FROM form_helpers WHERE id = ?";
 
         try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(request)) {

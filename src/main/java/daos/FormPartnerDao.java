@@ -45,9 +45,16 @@ public class FormPartnerDao {
 
         return formPartners;
     }
+
+    /**
+     * Add a commercial partner in the database
+     * @param newPartner the new commercial partner
+     */
     public void addPartner(FormPartner newPartner) {
+        String request = "INSERT INTO form_partners(firstName, lastName, organization, email, phone, message) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection();
-             PreparedStatement statement = connection.prepareStatement("INSERT INTO form_partners(firstName, lastName, organization, email, phone, message) VALUES (?, ?, ?, ?,?,?)")) {
+             PreparedStatement statement = connection.prepareStatement(request)) {
             statement.setString(1, newPartner.getFirstName());
             statement.setString(2, newPartner.getLastName());
             statement.setString(3, newPartner.getOrganization());
@@ -61,12 +68,12 @@ public class FormPartnerDao {
     }
 
     /**
-     * Delete a form partner in the BDD function of its identifier
+     * Delete a form partner in the DB function of its identifier
      * @param id the form partner identifier
      */
     public void deleteFormPartner(Integer id) {
 
-        String request = "DELETE * FROM form_partner WHERE id = ?";
+        String request = "DELETE FROM form_partners WHERE id = ?";
 
         try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(request)) {
