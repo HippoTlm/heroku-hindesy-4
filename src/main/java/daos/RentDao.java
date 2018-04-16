@@ -151,7 +151,7 @@ public class RentDao {
      */
     public void deleteRent(Integer id) {
 
-        String request = "DELETE * FROM rent WHERE id = ?";
+        String request = "DELETE FROM rent WHERE id = ?";
 
         try (Connection connection = DataSourceProvider.getInstance().getDataSource().getConnection();
              PreparedStatement statement = connection.prepareStatement(request)) {
